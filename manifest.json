@@ -162,6 +162,8 @@
     "https://www.nimo.tv/popout/chat/*",
     "https://dashboard.nimo.tv/popout/chat/*",
     "https://demo.openstreamingplatform.com/view/*chatOnly=True*",
+    "https://hyperiontv.net/view/*chatOnly=True*",
+    "https://8chan.tv/view/*chatOnly=True*",
     "https://*.locals.com/post/*",
     "https://*.locals.com/feed/*",
 	"https://locals.com/*/feed?*",
@@ -281,6 +283,7 @@
     "https://meetme.com/*",
     "https://fansly.com/chatroom/*",
     "https://pump.fun/coin/*",
+    "https://pump.fun/livechat/*",
     "https://retake.tv/*",
     "https://www.camsoda.com/*",
     "https://portal.abs.xyz/stream/*"
@@ -406,7 +409,8 @@
         "./sources/pumpfun.js"
       ],
       "matches": [
-        "https://pump.fun/coin/*"
+        "https://pump.fun/coin/*",
+        "https://pump.fun/livechat/*"
       ]
     },
     {
@@ -463,7 +467,9 @@
         "./sources/openstreamingplatform.js"
       ],
       "matches": [
-        "https://demo.openstreamingplatform.com/view/*chatOnly=True*"
+        "https://demo.openstreamingplatform.com/view/*chatOnly=True*",
+        "https://hyperiontv.net/view/*chatOnly=True*",
+        "https://8chan.tv/view/*chatOnly=True*"
       ]
     },
     {
