@@ -60,12 +60,9 @@
 		} catch(e){}
 
 		try {
-			const msgCandidates = Array.from(row.querySelectorAll("div.d-flex.align-items-center span[style*='overflow-wrap']"))
-				.map((ele)=> (ele.textContent || "").trim())
-				.filter(Boolean);
+			const msgCandidates = row.querySelectorAll("div.d-flex.align-items-center span[style*='overflow-wrap']");
 			if (msgCandidates.length){
-				// Mage prepends newest messages above older content; prefer first item, not last.
-				msg = escapeHtml(msgCandidates[0]);
+				msg = escapeHtml((msgCandidates[msgCandidates.length - 1].textContent || "").trim());
 			}
 		} catch(e){}
 
