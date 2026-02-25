@@ -115,6 +115,11 @@
     "https://www.wix.com/*",
     "https://wix.com/*",
     "https://verticalpixelzone.com/*",
+    "https://vpzone.tv/chat-dock/*",
+    "https://www.vpzone.tv/chat-dock/*",
+    "https://mage.stream/channel/*",
+    "https://zora.co/@*/live",
+    "https://w.tv/*/chat",
     "https://www.ebay.com/ebaylive/events/*",
     "https://www.ebay.co.uk/ebaylive/events/*",
     "https://www.ebay.de/ebaylive/events/*",
@@ -617,6 +622,39 @@
       ],
       "matches": [
         "https://verticalpixelzone.com/*"
+      ]
+    },
+    {
+      "js": [
+        "./sources/vpzone.js"
+      ],
+      "matches": [
+        "https://vpzone.tv/chat-dock/*",
+        "https://www.vpzone.tv/chat-dock/*"
+      ]
+    },
+    {
+      "js": [
+        "./sources/mage.js"
+      ],
+      "matches": [
+        "https://mage.stream/channel/*"
+      ]
+    },
+    {
+      "js": [
+        "./sources/zora.js"
+      ],
+      "matches": [
+        "https://zora.co/@*/live"
+      ]
+    },
+    {
+      "js": [
+        "./sources/wtv.js"
+      ],
+      "matches": [
+        "https://w.tv/*/chat"
       ]
     },
     {
