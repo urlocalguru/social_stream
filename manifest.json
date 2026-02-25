@@ -286,6 +286,7 @@
     "https://pump.fun/livechat/*",
     "https://retake.tv/*",
     "https://www.camsoda.com/*",
+    "https://robotstreamer.com/chat.html?c=*",
     "https://portal.abs.xyz/stream/*"
   ],
   "content_scripts": [
@@ -470,6 +471,14 @@
         "https://demo.openstreamingplatform.com/view/*chatOnly=True*",
         "https://hyperiontv.net/view/*chatOnly=True*",
         "https://8chan.tv/view/*chatOnly=True*"
+      ]
+    },
+    {
+      "js": [
+        "./sources/robotstreamer.js"
+      ],
+      "matches": [
+        "https://robotstreamer.com/chat.html?c=*"
       ]
     },
     {
