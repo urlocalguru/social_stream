@@ -24,6 +24,9 @@
 	let isExtensionOn = true;
 	let pollTimer = null;
 
+	// handle DOM recycling/reordering without re-emitting identical rows
+	const seenMessageKeys = new Set();
+
 	//////////////////////////////
 	// 3) Generic utility helpers
 	//////////////////////////////
@@ -42,6 +45,13 @@
 		}
 	}
 
+	function trimSeenSet(max=1000, keep=500){
+		if (seenMessageKeys.size <= max){ return; }
+		const reduced = Array.from(seenMessageKeys).slice(-keep);
+		seenMessageKeys.clear();
+		reduced.forEach((k)=>seenMessageKeys.add(k));
+	}
+
 	//////////////////////////////
 	// 4) Parsing logic
 	//////////////////////////////
@@ -52,30 +62,40 @@
 		let msg = "";
 		let membership = "";
 
+		const line = row.querySelector("div.d-flex.align-items-center");
+		if (!line){ return null; }
+
 		try {
-			const nameEle = row.querySelector("span.text-pink-500.font-medium.cursor-pointer");
+			const nameEle = line.querySelector("span.text-pink-500.font-medium.cursor-pointer");
 			if (nameEle){
 				name = escapeHtml((nameEle.textContent || "").trim());
 			}
 		} catch(e){}
 
 		try {
-			const msgCandidates = row.querySelectorAll("div.d-flex.align-items-center span[style*='overflow-wrap']");
-			if (msgCandidates.length){
-				msg = escapeHtml((msgCandidates[msgCandidates.length - 1].textContent || "").trim());
-			}
-		} catch(e){}
-
-		try {
-			const roleBadge = row.querySelector("div.d-flex.align-items-center > span.bg-pink-600");
+			const roleBadge = line.querySelector(":scope > span.bg-pink-600");
 			if (roleBadge){
 				membership = escapeHtml((roleBadge.textContent || "").trim());
 			}
 		} catch(e){}
 
+		try {
+			const directSpans = Array.from(line.querySelectorAll(":scope > span"));
+			const msgCandidates = directSpans
+				.filter((ele)=> !ele.matches(".bg-pink-600, .text-pink-500.font-medium.cursor-pointer"))
+				.map((ele)=> (ele.textContent || "").trim())
+				.filter(Boolean);
+			if (msgCandidates.length){
+				// Message content is the trailing direct span in Mage's chat line.
+				msg = escapeHtml(msgCandidates[msgCandidates.length - 1]);
+			}
+		} catch(e){}
+
 		if (!name || !msg){ return null; }
 
+		const dedupeKey = [name, msg, membership].join("::");
 		return {
+			dedupeKey,
 			data: {
 				chatname: name,
 				chatbadges: CONFIG.DEFAULTS.chatbadges,
@@ -95,12 +115,17 @@
 
 	function processMessageRow(row){
 		if (!row || !row.matches || !row.matches(CONFIG.MESSAGE_ROW_SELECTOR)){ return; }
-		if (row.dataset.ssProcessed){ return; }
 
 		const parsed = parseMessageRow(row);
 		if (!parsed){ return; }
 
-		row.dataset.ssProcessed = "true";
+		if (row.dataset.ssLastKey === parsed.dedupeKey){ return; }
+		row.dataset.ssLastKey = parsed.dedupeKey;
+
+		if (seenMessageKeys.has(parsed.dedupeKey)){ return; }
+		seenMessageKeys.add(parsed.dedupeKey);
+		trimSeenSet();
+
 		pushMessage(parsed.data);
 	}
 
