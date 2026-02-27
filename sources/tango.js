@@ -2,10 +2,11 @@
 	//////////////////////////////
 	// 1) Site-level configuration
 	//////////////////////////////
+	// Tango uses at least two wrappers (tzNgn/qv4zS and Pna2H/KngPy), but event rows share I8PsW + chat-event-* ids.
 	const CONFIG = {
 		SOURCE_TYPE: "tango",
 		POLL_INTERVAL_MS: 500,
-		MESSAGE_ROW_SELECTOR: "div.tzNgn > div.qv4zS.I8PsW[data-testid^='chat-event-']",
+		MESSAGE_ROW_SELECTOR: "div[data-testid^='chat-event-'].I8PsW",
 		FOCUS_INPUT_SELECTOR: "textarea, input[type='text'], [contenteditable='true']",
 		DEFAULTS: {
 			chatbadges: "",
