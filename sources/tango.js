@@ -7,6 +7,10 @@
 		SOURCE_TYPE: "tango",
 		POLL_INTERVAL_MS: 500,
 		MESSAGE_ROW_SELECTOR: "div[data-testid^='chat-event-'].I8PsW",
+		IGNORED_EVENT_MESSAGES: [
+			"started watching",
+			"new follower"
+		],
 		FOCUS_INPUT_SELECTOR: "textarea, input[type='text'], [contenteditable='true']",
 		DEFAULTS: {
 			chatbadges: "",
@@ -90,6 +94,11 @@
 		} catch(e){}
 
 		if (!name || !msg){ return null; }
+
+		const normalizedMsg = msg.toLowerCase().replace(/[!?.]+$/g, "").trim();
+		if (CONFIG.IGNORED_EVENT_MESSAGES.includes(normalizedMsg)){
+			return null;
+		}
 
 		const eventId = row.getAttribute("data-testid") || "";
 		const dedupeKey = eventId || [name, msg, chatimg].join("::");
