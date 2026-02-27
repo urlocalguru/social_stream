@@ -120,6 +120,8 @@
     "https://mage.stream/channel/*",
     "https://zora.co/@*/live",
     "https://w.tv/*/chat",
+    "https://vaughn.live/*/chat",
+    "https://tango.me/stream/*",
     "https://www.ebay.com/ebaylive/events/*",
     "https://www.ebay.co.uk/ebaylive/events/*",
     "https://www.ebay.de/ebaylive/events/*",
@@ -655,6 +657,22 @@
       ],
       "matches": [
         "https://w.tv/*/chat"
+      ]
+    },
+    {
+      "js": [
+        "./sources/vaughn.js"
+      ],
+      "matches": [
+        "https://vaughn.live/*/chat"
+      ]
+    },
+    {
+      "js": [
+        "./sources/tango.js"
+      ],
+      "matches": [
+        "https://tango.me/stream/*"
       ]
     },
     {
