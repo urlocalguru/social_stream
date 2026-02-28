@@ -173,7 +173,7 @@
     "https://8chan.tv/view/*chatOnly=True*",
     "https://*.locals.com/post/*",
     "https://*.locals.com/feed/*",
-	"https://locals.com/*/feed?*",
+    "https://locals.com/*/feed?*",
     "https://bilibili.tv/*/live/*",
     "https://live.bilibili.com/*",
     "https://*.minnit.chat/*/Main",
@@ -341,6 +341,7 @@
     },
     {
       "js": [
+        "./sources/source_common.js",
         "./sources/bigo.js"
       ],
       "matches": [
@@ -482,6 +483,7 @@
     },
     {
       "js": [
+        "./sources/source_common.js",
         "./sources/robotstreamer.js"
       ],
       "matches": [
@@ -628,6 +630,7 @@
     },
     {
       "js": [
+        "./sources/source_common.js",
         "./sources/vpzone.js"
       ],
       "matches": [
@@ -637,6 +640,7 @@
     },
     {
       "js": [
+        "./sources/source_common.js",
         "./sources/mage.js"
       ],
       "matches": [
@@ -645,6 +649,7 @@
     },
     {
       "js": [
+        "./sources/source_common.js",
         "./sources/zora.js"
       ],
       "matches": [
@@ -653,6 +658,7 @@
     },
     {
       "js": [
+        "./sources/source_common.js",
         "./sources/wtv.js"
       ],
       "matches": [
@@ -661,6 +667,7 @@
     },
     {
       "js": [
+        "./sources/source_common.js",
         "./sources/vaughn.js"
       ],
       "matches": [
@@ -669,6 +676,7 @@
     },
     {
       "js": [
+        "./sources/source_common.js",
         "./sources/tango.js"
       ],
       "matches": [
@@ -812,6 +820,7 @@
     },
     {
       "js": [
+        "./sources/source_common.js",
         "./sources/bandlab.js"
       ],
       "matches": [
@@ -1076,7 +1085,7 @@
       "matches": [
         "https://*.locals.com/post/*",
         "https://*.locals.com/feed/*",
-		"https://locals.com/*/feed?*"
+        "https://locals.com/*/feed?*"
       ]
     },
     {
